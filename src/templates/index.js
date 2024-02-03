@@ -5,5 +5,6 @@ const templates = {
   mongoose: require('./mongoose'),
   reactjs: require('./reactjs'),
   'reactjs-hook': require('./reactjs-hook'),
+  jest: require('./jest'),
 };
 module.exports = templates;

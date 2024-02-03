@@ -10,6 +10,11 @@
       "filename": "{name}.controller.js",
       "template": "es5"
     },
+    "controller-test": {
+      "path": "./demo/tests/controllers",
+      "filename": "{name}.controller.test.js",
+      "template": "jest"
+    },
     "route": {
       "path": "./demo/routes",
       "filename": "{name}.route.js",

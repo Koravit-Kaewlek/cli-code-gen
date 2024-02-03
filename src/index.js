@@ -5,6 +5,7 @@ const path = require('path');
 const packageJson = require('../package.json');
 const templates = require('./templates');
 const capitalizeFirstLetter = require('./libs/capitalizeFirstLetter');
+const { FgRed, FgGreen } = require('./libs/color');
 const filenameConfig = 'codegen.config.json';
 function readConfig() {
   const configPath = path.resolve(process.cwd(), filenameConfig);
@@ -16,14 +17,15 @@ function readConfig() {
 function initCommands(config) {
   program
     .version(packageJson.version)
-    .description('This is cli code generator');
+    .description('this is cli code generator');
 
   program
     .command('g <configName> <name>')
     .description('generate files')
     .action((configName, name) => {
       if (!config[configName]) {
-        throw new Error(`Not Found ${configName} in ${filenameConfig}`);
+        console.log(FgRed, `not found ${configName} in ${filenameConfig}`);
+        return;
       }
 
       const Name = capitalizeFirstLetter(name);
@@ -40,14 +42,15 @@ function initCommands(config) {
           fs.mkdirSync(_data.path, { recursive: true });
         }
 
-        if (fs.existsSync(_data.fullPath)) {
-          throw new Error(`You Have Already Filename ${_data.filename}`);
-        }
         data[type] = _data;
       }
 
       for (const type in data) {
         const item = data[type];
+        if (fs.existsSync(item.fullPath)) {
+          console.log(FgRed, `you already have location: ${item.fullPath}`);
+          continue;
+        }
         fs.writeFileSync(
           item.fullPath,
           templates[item.template].generate(
@@ -56,6 +59,10 @@ function initCommands(config) {
             data,
             config
           )
+        );
+        console.log(
+          FgGreen,
+          `file have been successfully generated location: ${item.fullPath}`
         );
       }
     });
