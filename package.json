@@ -1,17 +1,22 @@
 {
   "name": "cli-code-gen",
   "version": "0.0.1",
-  "description": "",
+  "description": "application code generator",
+  "contributors": [
+    "Koravit Kaewlek <koravit258@gmail.com>"
+  ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Koravit-Kaewlek/cli-code-gen.git"
   },
-  "keywords": [],
+  "keywords": [
+    "code generator",
+    "codegen"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
