@@ -31,8 +31,9 @@ project-root
 Create a file named `codegen.config.json` in the root of your project.
 If you need to capitalize the first letter, just use **{Name}**
 
+`codegen.config.json`
 ```json
-//codegen.config.json
+
 {
   "feature": {
     "page": {
@@ -100,7 +101,7 @@ project-root
 
 ---
 
-###Available Templates
+### Available Templates
 
 | Template      | Description                           |
 | ------------- | ------------------------------------- |
