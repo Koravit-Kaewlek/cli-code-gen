@@ -24,6 +24,8 @@ project-root
 │ └── ...
 │ ├── App.jsx
 │ ├── main.jsx
+│ └── ...
+└── ...
 ```
 
 Create a file named `codegen.config.json` in the root of your project.
@@ -79,25 +81,33 @@ project-root
 ├── src
 │ ├── custom
 │ │ ├── getCookie.custom.js
+│ │ └── ...
 │ ├── hooks
 │ │ ├── useAuth.jsx
+│ │ └── ...
 │ ├── pages
 │ │ ├── Home
 │ │ │ ├── Home.jsx
+│ │ │ └── ...
 │ │ ├── Login
 │ │ │ ├── Login.jsx
+│ │ │ └── ...
 │ ├── App.jsx
 │ ├── main.jsx
+│ └── ...
+└── ...
 ```
 
 ---
 
 ###Available Templates
 
-- es5
-- es6
-- express
-- jest
-- mongoose
-- reactjs
-- reactjs-hook
+| Template      | Description                           |
+| ------------- | ------------------------------------- |
+| es5           | ECMAScript 5 (JavaScript)             |
+| es6           | ECMAScript 6 (JavaScript)             |
+| expressjs     | Express.js Router (CRUD)              |
+| jest          | Jest (JavaScript testing)             |
+| mongoose      | Mongoose (MongoDB ODM)                |
+| reactjs       | React.js (JavaScript library)         |
+| reactjs-hook  | React.js Hooks (Have context in file) |

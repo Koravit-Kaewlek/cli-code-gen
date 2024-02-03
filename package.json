@@ -1,6 +1,6 @@
 {
   "name": "@koravit258/cli-code-gen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "application code generator",
   "contributors": [
     "Koravit Kaewlek <koravit258@gmail.com>"
