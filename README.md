@@ -40,7 +40,7 @@ If you need to capitalize the first letter, just use **{Name}**
     }
   },
   "hook": {
-    "": {
+    "test": {
       "path": "./src/hooks",
       "filename": "use{Name}.jsx",
       "template": "reactjs-hook"
