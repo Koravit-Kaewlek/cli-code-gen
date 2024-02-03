@@ -1,0 +1,27 @@
+{
+  "name": "cli-code-gen",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koravit-Kaewlek/cli-code-gen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koravit-Kaewlek/cli-code-gen/issues"
+  },
+  "homepage": "https://github.com/Koravit-Kaewlek/cli-code-gen#readme",
+  "dependencies": {
+    "commander": "^11.1.0"
+  },
+  "bin": {
+    "codegen": "./src/index.js"
+  }
+}

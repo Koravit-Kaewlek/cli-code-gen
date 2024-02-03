@@ -1,0 +1,24 @@
+{
+  "structure": {
+    "model": {
+      "path": "./demo/models",
+      "filename": "{name}.model.js",
+      "template": "mongoose"
+    },
+    "controller": {
+      "path": "./demo/controllers",
+      "filename": "{name}.controller.js",
+      "template": "es5"
+    },
+    "route": {
+      "path": "./demo/routes",
+      "filename": "{name}.route.js",
+      "template": "express"
+    },
+    "lib": {
+      "path": "./demo/libs",
+      "filename": "{name}.lib.es6.js",
+      "template": "es6"
+    }
+  }
+}
