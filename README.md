@@ -12,8 +12,6 @@ npm install -g @koravit258/cli-code-gen
 
 ## 2. Create Config File
 
-Create a file named `codegen.config.json` in the root of your project.
-
 Example **ReactJS** Project Structure
 
 ```
@@ -28,9 +26,11 @@ project-root
 │ ├── main.jsx
 ```
 
+Create a file named `codegen.config.json` in the root of your project.
 If you need to capitalize the first letter, just use **{Name}**
 
 ```json
+//codegen.config.json
 {
   "feature": {
     "page": {
