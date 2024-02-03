@@ -1,13 +1,14 @@
 {
   "name": "@koravit258/cli-code-gen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "application code generator",
   "contributors": [
     "Koravit Kaewlek <koravit258@gmail.com>"
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "pub": "npm publish --access=public"
   },
   "repository": {
     "type": "git",
