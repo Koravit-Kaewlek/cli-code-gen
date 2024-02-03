@@ -1,12 +1,10 @@
-const capitalizeFirstLetter = require('../../libs/capitalizeFirstLetter');
-
 function generate({ name }, self) {
   return `
-function ${name}${capitalizeFirstLetter(self.type)}() {
+function ${name}() {
   return;
 }
 
-module.exports = ${name}${capitalizeFirstLetter(self.type)};
+module.exports = ${name};
 `;
 }
 module.exports = { generate };
