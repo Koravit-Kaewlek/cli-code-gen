@@ -1,5 +1,5 @@
 {
-  "name": "cli-code-gen",
+  "name": "@koravit258/cli-code-gen",
   "version": "0.0.1",
   "description": "application code generator",
   "contributors": [
