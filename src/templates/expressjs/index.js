@@ -13,6 +13,11 @@ ${name}Router.get('/:id', function(req, res, next) {
   res.status(200).send({ data: id });
 });
 
+${name}Router.post('/', function(req, res, next) {
+  const body = req.body
+  res.status(200).send({ data: body });
+});
+
 ${name}Router.put('/:id', function(req, res, next) {
   const { id } = req.params
   res.status(200).send({ data: id });
