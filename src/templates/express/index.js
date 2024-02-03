@@ -1,4 +1,4 @@
-function generate({ name }, self, structure, config) {
+function generate({ name }, self, feature, config) {
   return `
 const express = require('express');
 

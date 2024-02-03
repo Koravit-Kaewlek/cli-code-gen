@@ -1,5 +1,5 @@
 {
-  "structure": {
+  "feature": {
     "model": {
       "path": "./demo/models",
       "filename": "{name}.model.js",
@@ -15,10 +15,17 @@
       "filename": "{name}.route.js",
       "template": "express"
     },
-    "lib": {
-      "path": "./demo/libs",
-      "filename": "{name}.lib.es6.js",
-      "template": "es6"
+    "page": {
+      "path": "./demo/pages/{Name}",
+      "filename": "index.jsx",
+      "template": "reactjs"
+    }
+  },
+  "hook": {
+    "": {
+      "path": "./demo/hooks",
+      "filename": "use{Name}.jsx",
+      "template": "reactjs-hook"
     }
   }
 }

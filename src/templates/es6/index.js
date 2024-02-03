@@ -1,6 +1,6 @@
 const capitalizeFirstLetter = require('../../libs/capitalizeFirstLetter');
 
-function generate({ name }, self, structure, config) {
+function generate({ name }, self, feature, config) {
   return `
 function ${name}${capitalizeFirstLetter(self.type)}() {
   return;

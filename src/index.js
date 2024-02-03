@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const packageJson = require('../package.json');
 const templates = require('./templates');
+const capitalizeFirstLetter = require('./libs/capitalizeFirstLetter');
 const filenameConfig = 'codegen.config.json';
 function readConfig() {
   const configPath = path.resolve(process.cwd(), filenameConfig);
@@ -15,38 +16,44 @@ function readConfig() {
 function initCommands(config) {
   program
     .version(packageJson.version)
-    .description('A simple CLI application built with Node.js');
+    .description('This is cli code generator');
 
   program
-    .command('feature <name>')
-    .description('generate feature files')
-    .action((name) => {
-      if (!config.structure) {
-        throw new Error(`Not Found structure in ${filenameConfig}`);
+    .command('g <configName> <name>')
+    .description('generate files')
+    .action((configName, name) => {
+      if (!config[configName]) {
+        throw new Error(`Not Found ${configName} in ${filenameConfig}`);
       }
 
-      const structure = {};
-      for (const type in config.structure) {
-        const _structure = config.structure[type];
-        _structure.type = type;
-        _structure.path = _structure.path.replace('{name}', name);
-        _structure.filename = _structure.filename.replace('{name}', name);
-        _structure.fullPath = `${_structure.path}/${_structure.filename}`;
-        if (!fs.existsSync(_structure.path)) {
-          fs.mkdirSync(_structure.path, { recursive: true });
+      const Name = capitalizeFirstLetter(name);
+      const data = {};
+      for (const type in config[configName]) {
+        const _data = config[configName][type];
+        _data.type = type;
+        _data.path = _data.path.replace('{name}', name).replace('{Name}', Name);
+        _data.filename = _data.filename
+          .replace('{name}', name)
+          .replace('{Name}', Name);
+        _data.fullPath = `${_data.path}/${_data.filename}`;
+        if (!fs.existsSync(_data.path)) {
+          fs.mkdirSync(_data.path, { recursive: true });
         }
 
-        structure[type] = _structure;
+        if (fs.existsSync(_data.fullPath)) {
+          throw new Error(`You Have Already Filename ${_data.filename}`);
+        }
+        data[type] = _data;
       }
 
-      for (const type in structure) {
-        const item = structure[type];
+      for (const type in data) {
+        const item = data[type];
         fs.writeFileSync(
           item.fullPath,
           templates[item.template].generate(
-            { name },
-            structure[type],
-            structure,
+            { name, Name },
+            data[type],
+            data,
             config
           )
         );
