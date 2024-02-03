@@ -18,7 +18,7 @@
     "route": {
       "path": "./demo/routes",
       "filename": "{name}.route.js",
-      "template": "express"
+      "template": "expressjs"
     },
     "page": {
       "path": "./demo/pages/{Name}",
