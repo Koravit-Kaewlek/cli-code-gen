@@ -1,7 +1,7 @@
 const capitalizeFirstLetter = require('../../libs/capitalizeFirstLetter');
 
 function generate({ name, Name }, self, feature, config) {
-  const funcName = `${Name}${capitalizeFirstLetter(self.type)}`;
+  const funcName = `${Name}`;
   return `
 import React, { createContext, useContext, useEffect, useState } from 'react';
 const ${funcName}Context = createContext({});
