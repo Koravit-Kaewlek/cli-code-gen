@@ -261,3 +261,5 @@ describe('example jest function', () => {
 | mongoose     | Mongoose (MongoDB ODM)                |
 | reactjs      | React.js (JavaScript library)         |
 | reactjs-hook | React.js Hooks (Have context in file) |
+| vuejs        | Vue.js (Vue3)                         |
+| sequelize    | Sequelize (Schema)                    |
