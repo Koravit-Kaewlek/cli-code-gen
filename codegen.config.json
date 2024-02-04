@@ -1,36 +1,16 @@
 {
-  "feature": {
-    "model": {
-      "path": "./demo/models",
-      "filename": "{name}.model.js",
-      "template": "mongoose"
-    },
-    "controller": {
-      "path": "./demo/controllers",
-      "filename": "{name}.controller.js",
-      "template": "es5"
-    },
-    "controller-test": {
-      "path": "./demo/tests/controllers",
-      "filename": "{name}.controller.test.js",
-      "template": "jest"
-    },
-    "route": {
-      "path": "./demo/routes",
-      "filename": "{name}.route.js",
-      "template": "expressjs"
-    },
-    "page": {
-      "path": "./demo/pages/{Name}",
-      "filename": "index.jsx",
-      "template": "reactjs"
+  "template": {
+    "new-template": {
+      "path": "./src/templates/{name}",
+      "filename": "index.js",
+      "template": "cli"
     }
   },
-  "hook": {
-    "": {
-      "path": "./demo/hooks",
-      "filename": "use{Name}.jsx",
-      "template": "reactjs-hook"
+  "test": {
+    "sequelize": {
+      "path": "./demo/tests",
+      "filename": "{name}.sequelize.js",
+      "template": "sequelize"
     }
   }
 }

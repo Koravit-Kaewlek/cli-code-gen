@@ -6,5 +6,8 @@ const templates = {
   reactjs: require('./reactjs'),
   'reactjs-hook': require('./reactjs-hook'),
   jest: require('./jest'),
+  cli: require('./cli'),
+  vuejs: require('./vuejs'),
+  sequelize: require('./sequelize'),
 };
 module.exports = templates;
