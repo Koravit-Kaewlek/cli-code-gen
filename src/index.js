@@ -1,72 +1,131 @@
 #!/usr/bin/env node
-const { program } = require('commander');
+
 const fs = require('fs');
 const path = require('path');
-const packageJson = require('../package.json');
 const templates = require('./templates');
 const capitalizeFirstLetter = require('./libs/capitalizeFirstLetter');
 const { FgRed, FgGreen } = require('./libs/color');
+const inquirer = require('inquirer').default;
 const filenameConfig = 'codegen.config.json';
+
 function readConfig() {
   const configPath = path.resolve(process.cwd(), filenameConfig);
   const _config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-  _config.configPath = configPath;
   return _config;
 }
 
-function initCommands(config) {
-  program
-    .version(packageJson.version)
-    .description('this is cli code generator');
+const customConfig = readConfig();
 
-  program
-    .command('g <configName> <name>')
-    .description('generate files')
-    .action((configName, name) => {
-      if (!config[configName]) {
-        console.log(FgRed, `not found ${configName} in ${filenameConfig}`);
-        return;
-      }
-
-      const Name = capitalizeFirstLetter(name);
-      const data = {};
-      for (const type in config[configName]) {
-        const _data = config[configName][type];
-        _data.type = type;
-        _data.path = _data.path.replace('{name}', name).replace('{Name}', Name);
-        _data.filename = _data.filename
-          .replace('{name}', name)
-          .replace('{Name}', Name);
-        _data.fullPath = `${_data.path}/${_data.filename}`;
-        if (!fs.existsSync(_data.path)) {
-          fs.mkdirSync(_data.path, { recursive: true });
-        }
-
-        data[type] = _data;
-      }
-
-      for (const type in data) {
-        const item = data[type];
-        if (fs.existsSync(item.fullPath)) {
-          console.log(FgRed, `you already have location: ${item.fullPath}`);
-          continue;
-        }
-        fs.writeFileSync(
-          item.fullPath,
-          templates[item.template].generate(
-            { name, Name },
-            data[type],
-            data,
-            config
-          )
-        );
-        console.log(
-          FgGreen,
-          `file have been successfully generated location: ${item.fullPath}`
-        );
-      }
-    });
-  program.parse(process.argv);
+if (!customConfig) {
+  console.log(FgRed, `File ${filenameConfig} not found`);
+  throw new Error(`File ${filenameConfig} not found`);
 }
 
-initCommands(readConfig());
+const replacer = (str, replaceConfig) => {
+  let result = str;
+  for (const key in replaceConfig) {
+    result = result.replace(new RegExp(`__${key}__`, 'g'), replaceConfig[key]);
+  }
+  return result;
+};
+
+inquirer
+  .prompt([
+    {
+      name: 'type',
+      type: 'list',
+      message: 'Select type: ',
+      choices: [
+        { name: 'Use custom config', value: 'use' },
+        { name: 'Create new config', value: 'create' },
+      ],
+    },
+  ])
+  .then(({ type }) => {
+    switch (type) {
+      case 'use':
+        promptUseCustomConfig();
+        break;
+      case 'create':
+        break;
+    }
+  });
+
+const promptUseCustomConfig = () => {
+  inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'config',
+        message: 'Enter your custom config: ',
+        choices: Object.keys(customConfig).map((key) => {
+          return {
+            name: `${key} (${Object.keys(customConfig[key]).join(', ')})`,
+            value: key,
+          };
+        }),
+      },
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Enter name: ',
+        validate: (value) => {
+          if (value.length) {
+            return true;
+          } else {
+            return 'Please enter name!';
+          }
+        },
+      },
+    ])
+    .then((answers) => {
+      const config = answers.config;
+      const name = answers.name.charAt(0).toLowerCase() + answers.name.slice(1);
+      const Name = name.charAt(0).toUpperCase() + name.slice(1);
+      const _customConfig = customConfig[config];
+      const data = [];
+      for (const subCustomConfig in _customConfig) {
+        const item = _customConfig[subCustomConfig];
+        const replaceConfig = {
+          Name,
+          name,
+        };
+
+        const fileContent = replacer(
+          templates[item.template]
+            ? fs.readFileSync(templates[item.template], 'utf-8')
+            : '',
+          replaceConfig
+        );
+
+        const filename = replacer(item.filename, replaceConfig);
+
+        const folder = replacer(item.folder, replaceConfig);
+
+        const fullPath = path.resolve(folder, filename);
+
+        if (!fs.existsSync(folder)) {
+          fs.mkdirSync(folder, { recursive: true });
+        }
+
+        if (fs.existsSync(fullPath)) {
+          console.log(FgRed, `File ${filename} already exists`);
+          return;
+        }
+
+        data.push({
+          filename,
+          folder,
+          fullPath,
+          fileContent,
+        });
+      }
+
+      for (const item of data) {
+        fs.writeFileSync(item.fullPath, item.fileContent, {
+          encoding: 'utf-8',
+        });
+        console.log(FgGreen, `File ${item.filename} created successfully`);
+      }
+    });
+};

@@ -1,16 +1,30 @@
 {
-  "template": {
-    "new-template": {
-      "path": "./src/templates/{name}",
-      "filename": "index.js",
-      "template": "cli"
+  "create-react-feature": {
+    "page": {
+      "folder": "./demo/pages/__Name__",
+      "filename": "__Name__.tsx",
+      "template": "react/ts"
     }
   },
-  "test": {
-    "sequelize": {
-      "path": "./demo/tests",
-      "filename": "{name}.sequelize.js",
-      "template": "sequelize"
+  "create-express-feature": {
+    "model": {
+      "folder": "./demo/models",
+      "filename": "__name__.model.js",
+      "template": "mongoose/es5"
+    },
+    "controller": {
+      "folder": "./demo/controllers",
+      "filename": "__name__.controller.js"
+    },
+    "controller-test": {
+      "folder": "./demo/tests/controllers",
+      "filename": "__name__.controller.test.js",
+      "template": "jest/js"
+    },
+    "route": {
+      "folder": "./demo/routes",
+      "filename": "__name__.route.js",
+      "template": "express/es5"
     }
   }
 }

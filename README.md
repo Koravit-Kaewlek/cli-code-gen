@@ -27,31 +27,17 @@ project-root
 ```
 
 Create a file named `codegen.config.json` in the root of your project.
-If you need to capitalize the first letter, just use **{Name}**
+If you need to capitalize the first letter, just use **__Name__**
 
 `codegen.config.json`
 
 ```json
 {
-  "feature": {
+  "create-react-feature": {
     "page": {
-      "path": "./src/pages/{Name}",
-      "filename": "{Name}.jsx",
-      "template": "reactjs"
-    }
-  },
-  "hook": {
-    "test": {
-      "path": "./src/hooks",
-      "filename": "use{Name}.jsx",
-      "template": "reactjs-hook"
-    }
-  },
-  "custom": {
-    "lib": {
-      "path": "./src/custom",
-      "filename": "{name}.custom.js",
-      "template": "es6"
+      "folder": "./demo/pages/__Name__",
+      "filename": "__Name__.jsx",
+      "template": "react/js"
     }
   }
 }
@@ -62,14 +48,11 @@ If you need to capitalize the first letter, just use **{Name}**
 ## 3. Run command
 
 ```bash
-codegen g <configName> <name>
-```
-
-```bash
-codegen g feature home
-codegen g feature login
-codegen g hook auth
-codegen g custom getCookie
+$ codegen
+$ Select type: Use custom config
+$ Enter your custom config:  create-react-feature (page)
+$ Enter name:  Home
+File Home.tsx created successfully
 ```
 
 **Project Structure After Running the Command**
@@ -79,10 +62,8 @@ project-root
 ├── codegen.config.json
 ├── src
 │ ├── custom
-│ │ ├── getCookie.custom.js
 │ │ └── ...
 │ ├── hooks
-│ │ ├── useAuth.jsx
 │ │ └── ...
 │ ├── pages
 │ │ ├── Home
@@ -122,26 +103,25 @@ Use Config `codegen.config.json`
 
 ```json
 {
-  "feature": {
+  "create-express-feature": {
     "model": {
-      "path": "./src/models",
-      "filename": "{name}.model.js",
-      "template": "mongoose"
+      "folder": "./demo/models",
+      "filename": "__name__.model.js",
+      "template": "mongoose/es5"
     },
     "controller": {
-      "path": "./src/controllers",
-      "filename": "{name}.controller.js",
-      "template": "es5"
+      "folder": "./demo/controllers",
+      "filename": "__name__.controller.js"
     },
     "controller-test": {
-      "path": "./src/tests/controllers",
-      "filename": "{name}.controller.test.js",
-      "template": "jest"
+      "folder": "./demo/tests/controllers",
+      "filename": "__name__.controller.test.js",
+      "template": "jest/js"
     },
     "route": {
-      "path": "./src/routes",
-      "filename": "{name}.route.js",
-      "template": "expressjs"
+      "folder": "./demo/routes",
+      "filename": "__name__.route.js",
+      "template": "express/es5"
     }
   }
 }
@@ -150,7 +130,15 @@ Use Config `codegen.config.json`
 Run Command.
 
 ```bash
-codegen g feature admin
+$ codegen
+$ Select type:  Use custom config
+$ Enter your custom config:  create-express-feature (model, controller, controller-test, route)
+$ Enter name:  admin
+File admin.model.js created successfully
+File admin.controller.js created successfully
+File admin.controller.test.js created successfully
+File admin.route.js created successfully
+
 ```
 
 Project Structure After Running the Command
@@ -183,11 +171,7 @@ project-root
 Template: **es5**
 **./src/controllers/admin.controller.js**
 ```js
-function admin() {
-  return;
-}
-
-module.exports = admin;
+// empty file
 ```
 
 Template: **mongoose**
@@ -219,8 +203,8 @@ adminRouter.get('/:id', function (req, res, next) {
   res.status(200).send({ data: id });
 });
 
-adminRouter.post('/', function(req, res, next) {
-  const body = req.body
+adminRouter.post('/', function (req, res, next) {
+  const body = req.body;
   res.status(200).send({ data: body });
 });
 
@@ -254,12 +238,15 @@ describe('example jest function', () => {
 
 | Template     | Description                           |
 | ------------ | ------------------------------------- |
-| es5          | ECMAScript 5 (JavaScript)             |
-| es6          | ECMAScript 6 (JavaScript)             |
-| expressjs    | Express.js Router (CRUD)              |
-| jest         | Jest (JavaScript testing)             |
-| mongoose     | Mongoose (MongoDB ODM)                |
-| reactjs      | React.js (JavaScript library)         |
-| reactjs-hook | React.js Hooks (Have context in file) |
-| vuejs        | Vue.js (Vue3)                         |
-| sequelize    | Sequelize (Schema)                    |
+| express/es5          | Express.js Router (CRUD) ES5 (JavaScript)             |
+| express/es6          | Express.js Router (CRUD) ES6 (JavaScript)             |
+| express/ts    | Express.js Router (CRUD) (Typescript)             |
+| jest/js         | Jest (JavaScript testing)             |
+| mongoose/es5     | Mongoose (MongoDB ODM)  (JavaScript)              |
+| mongoose/es6     | Mongoose (MongoDB ODM)  (JavaScript)              |
+| mongoose/ts     | Mongoose (MongoDB ODM)  (Typescript)              |
+| react/js      | React.js (JavaScript)         |
+| react/ts      | React.js (Typescript)         |
+| react-context/js | React.js Context (JavaScript) |
+| react-context/ts | React.js Context (Typescript) |
+| vue/js        | Vue.js (Vue3)                         |

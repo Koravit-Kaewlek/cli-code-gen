@@ -1,6 +1,6 @@
 {
   "name": "@koravit258/cli-code-gen",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "application code generator",
   "contributors": [
     "Koravit Kaewlek <koravit258@gmail.com>"
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/Koravit-Kaewlek/cli-code-gen#readme",
   "dependencies": {
-    "commander": "^11.1.0"
+    "inquirer": "^10.2.2"
   },
   "bin": {
     "codegen": "./src/index.js"
