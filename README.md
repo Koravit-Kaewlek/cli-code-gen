@@ -35,7 +35,7 @@ If you need to capitalize the first letter, just use **__Name__**
 {
   "create-react-feature": {
     "page": {
-      "folder": "./demo/pages/__Name__",
+      "folder": "./src/pages/__Name__",
       "filename": "__Name__.jsx",
       "template": "react/js"
     }
@@ -48,11 +48,7 @@ If you need to capitalize the first letter, just use **__Name__**
 ## 3. Run command
 
 ```bash
-$ codegen
-$ Select type: Use custom config
-$ Enter your custom config:  create-react-feature (page)
-$ Enter name:  Home
-File Home.tsx created successfully
+codegen
 ```
 
 **Project Structure After Running the Command**
@@ -105,21 +101,21 @@ Use Config `codegen.config.json`
 {
   "create-express-feature": {
     "model": {
-      "folder": "./demo/models",
+      "folder": "./src/models",
       "filename": "__name__.model.js",
       "template": "mongoose/es5"
     },
     "controller": {
-      "folder": "./demo/controllers",
+      "folder": "./src/controllers",
       "filename": "__name__.controller.js"
     },
     "controller-test": {
-      "folder": "./demo/tests/controllers",
+      "folder": "./src/tests/controllers",
       "filename": "__name__.controller.test.js",
       "template": "jest/js"
     },
     "route": {
-      "folder": "./demo/routes",
+      "folder": "./src/routes",
       "filename": "__name__.route.js",
       "template": "express/es5"
     }
@@ -130,15 +126,7 @@ Use Config `codegen.config.json`
 Run Command.
 
 ```bash
-$ codegen
-$ Select type:  Use custom config
-$ Enter your custom config:  create-express-feature (model, controller, controller-test, route)
-$ Enter name:  admin
-File admin.model.js created successfully
-File admin.controller.js created successfully
-File admin.controller.test.js created successfully
-File admin.route.js created successfully
-
+codegen
 ```
 
 Project Structure After Running the Command
@@ -168,10 +156,10 @@ project-root
 
 #### Files
 
-Template: **es5**
+Template: no template
 **./src/controllers/admin.controller.js**
 ```js
-// empty file
+// empty content
 ```
 
 Template: **mongoose**
