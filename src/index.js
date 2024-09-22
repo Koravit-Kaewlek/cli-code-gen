@@ -37,7 +37,7 @@ inquirer
       message: 'Select type: ',
       choices: [
         { name: 'Use custom config', value: 'use' },
-        { name: 'Create new config', value: 'create' },
+        { name: 'List Templates', value: 'list' },
       ],
     },
   ])
@@ -46,7 +46,23 @@ inquirer
       case 'use':
         promptUseCustomConfig();
         break;
-      case 'create':
+      case 'list':
+        inquirer
+          .prompt([
+            {
+              name: 'config',
+              type: 'list',
+              choices: Object.keys(templates).map((key) => {
+                return {
+                  name: key,
+                  value: key,
+                };
+              }),
+            },
+          ])
+          .then(({ config }) => {
+            console.log(FgGreen, JSON.stringify(customConfig[config], null, 2));
+          });
         break;
     }
   });

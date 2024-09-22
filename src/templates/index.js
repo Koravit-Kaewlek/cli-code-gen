@@ -41,4 +41,5 @@ const transformPath = (templates) => {
   }
   return result;
 };
+
 module.exports = transformPath(templates);

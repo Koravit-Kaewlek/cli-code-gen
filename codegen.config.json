@@ -26,5 +26,27 @@
       "filename": "__name__.route.js",
       "template": "express/es5"
     }
+  },
+  "create-next-feature-1": {
+    "page-app-dir": {
+      "folder": "./demo/app/__name__",
+      "filename": "page.tsx",
+      "template": "next/ts"
+    },
+    "mobule": {
+      "folder": "./demo/modules/__Name__",
+      "filename": "index.tsx",
+      "template": "react/ts"
+    },
+    "context": {
+      "folder": "./demo/modules/__Name__/context",
+      "filename": "__Name__Context.tsx",
+      "template": "react-context/ts"
+    },
+    "component": {
+      "folder": "./demo/modules/__name__/components",
+      "filename": "Example.tsx",
+      "template": "react/ts"
+    }
   }
 }
