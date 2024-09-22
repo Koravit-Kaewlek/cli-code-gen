@@ -1,11 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-// Define the shape of your context data
 interface __Name__ContextType {
-  // Define your context properties here (e.g., store, methods, etc.)
 }
 
-// Define the default value for the context
 const __Name__Context = createContext<__Name__ContextType | undefined>(undefined);
 
 interface __Name__ContextProviderProps {
@@ -13,9 +10,8 @@ interface __Name__ContextProviderProps {
 }
 
 export const __Name__ContextProvider: React.FC<__Name__ContextProviderProps> = (props) => {
-  // Define the store object or any state management logic here
+  
   const store: __Name__ContextType = {
-    // Add your store properties here
   };
 
   return (

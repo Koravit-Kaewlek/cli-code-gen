@@ -26,6 +26,9 @@ const templates = {
     js: './vuejs/js.vue',
     ts: './vuejs/ts.vue',
   },
+  next: {
+    ts: './next/ts.tsx',
+  },
 };
 
 const transformPath = (templates) => {
